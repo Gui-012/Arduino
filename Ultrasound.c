@@ -3,7 +3,7 @@
 
 static int timer_counter;
 
-double get_distance(uint8_t trigger_pin, uint8_t echo_pin)
+double get_distance(uint8_t trigger_pin, uint8_t echo_pin) // Returns distance Reading from sensor in cm
 {
   if(trigger_pin > 7 || echo_pin > 7 || trigger_pin == echo_pin)
   {
