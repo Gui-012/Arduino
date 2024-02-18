@@ -16,6 +16,7 @@ double get_distance(const uint8_t trigger_pin, const uint8_t echo_pin)
   OCR0A = 20; // Interrupt every 10us
   PORTD |= 1<<trigger_pin; // Turns on trigger pin
   TIMSK0 |= 1<<OCIE0A; // Enabling Interrupt for OCR0A
+  SREG |= 1<<7; // Enable Interrupts
   timer_counter = 0;
   while(timer_counter != 0){}; // Sends signal for 10us
   PORTD &= !(1<<trigger_pin); // Tunrs off trigger pin
