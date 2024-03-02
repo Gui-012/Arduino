@@ -64,10 +64,14 @@ uint8_t read_dht(const uint8_t data_pin, int* data)
       j++;
     }
   }
+  if(buffer[4] != buffer[0] + buffer[1] + buffer[2] + buffer[3]) // Checksum
+  {
+    return 1; //Checksum error
+  }
   data[0] = buffer[2];
   data[1] = buffer[0];
-  free(buffer);
   TIMSK0 &= ~(1<<OCIE0A); // Turns off timer interrupt
+  free(buffer);
   return 0;
 }
 
